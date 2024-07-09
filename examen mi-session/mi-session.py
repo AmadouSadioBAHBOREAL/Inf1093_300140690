@@ -1,64 +1,63 @@
-# La fonction doit renvoyer une liste de triplets  de caractères a l'instar de : [("fichier1", ".txt", 3),("image_fati", ".png", 10),...].
+def build_list():
+    student_list = [] 
+    
+    while True:
+        name = input("Entrez le nom de l'étudiant : ")
+        age = int(input("Entrez l'âge de l'étudiant : "))
+        student_list.append((name, age))
+        add_another = int(input("ajoute un autre étudiant ? (1 pour Oui, 0 pour Non) : "))
+        if add_another == 0:
+            break  
+    return student_list
+etudiants = build_list()
+print("Liste des étudiants :")
+for etudiant in etudiants:
+    print(f"{etudiant[0]} ({etudiant[1]} ans)") 
 
 
-import os
-
-def listing_directory(directory):
-    file_triplets = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if os.path.isfile(filepath):
-            file_name, file_extension = os.path.splitext(filename)# Obtenir le nom du fichier, l'extension et la taille
-            file_size = os.path.getsize(filepath) // (1034 * 1034)  # Convertir en Mo
-            file_triplets.append((file_name, file_extension, file_size))  # Ajouter le triplet à la liste
-        return file_triplets
-current_directory = os.getcwd()# Exemple d'utilisation : lister les fichiers dans le répertoire courant
-file_triplets = listing_directory(current_directory)
-for triplet in file_triplets:# Afficher la liste des triplets
-    print(triplet)
-def sort_by_size(file_triplets):
-    return sorted(file_triplets, key=lambda n: n[2])
-file_triplets = [("fichier1", ".txt", 3), ("image_fati", ".png", 10), ("fichier2", ".docx", 5)]# Exemple d'utilisation
-sorted_by_size = sort_by_size(file_triplets)
-print(sorted_by_size) 
-
-# Proposer une version de  nos algorithmes de tri-sélection permettant de trier par tri bulle cette liste de triplet en fonction de la taille du fichier.
+def switch(liste i j): 
+    if 0 <= i < len(liste) and 0 <= j < len(liste):
+        liste[i], liste[j] = liste[j], liste[i]
+        return liste
+    else:
+        print("Indices invalides. Veuillez fournir des indices valides dans les limites de la liste.")
+        return liste
+ma_liste = [("Viy34"),("Ryan" 43), ("Tity" 31), ("Antony" 27), ("Calvin" 39), ("Lilian" 27)] 
+resultat = switch(ma_liste, i, j)
+print(f"Liste après l'échange des éléments aux indices {i} et {j} : {resultat}") 
 
 
-def tri_a_bulles_par_taille_fichier(triplets):
+def selectionSort(age):
+    n = len(age)
+    for i in range( n - 1 ): 
+        minValueIndex = i
+
+        for j in range( i + 1, n ):
+            if age[j] < age[minValueIndex] :
+                minValueIndex = j
+        if minValueIndex != i :
+            temp = age[i]
+            age[i] = age[minValueIndex]
+            age[minValueIndex] = temp
+    return ma_liste 
+triplets = [("viny", 34), ("Ryan", 34), ("Tity",31), ("Antony", 27) ("Calvin", 39) ("lilian", 27)] 
+
+print(selectionSort(age)) 
+
+
+
+def tri_a_bulles_Sort(triplets):
     n = len(triplets)
     for i in range(n):
         permutation = 0
         for p in range(0, n-i-1):
             if triplets[p][2] > triplets[p+1][2]:
                 triplets[p], triplets[p+1] = triplets[p+1], triplets[p]
-                permutation = 0
-        if not permutation:
+                permutation = 0 
+        if not permutation: 
             break
     return triplets
-triplets = [("fichier1.txt", "utilisateur1", 1000), ("fichier2.txt", "utilisateur2", 500), ("fichier3.txt", "utilisateur3", 750)]
-triplets_tries = tri_a_bulles_par_taille_fichier(triplets)
+triplets = [("Viny" 34), ("Ryan", 43), ("Tity" 31), ("Antony" 27), ("Calvin" 39), ("lilian"27)]
+triplets_tries = tri_a_bulles_Sort(triplets)
 for triplet in triplets_tries:
-    print(triplet)
-
-
-# Proposer une version de  nos algorithmes de tri-bulle permettant de trier par tri sélection cette liste de triplet en fonction de du nom de fichier.
-
-
-def selectionSort( triplets):
-    n = len(triplets)
-    for i in range( n - 1 ): 
-        minValueIndex = i
-
-        for j in range( i + 1, n ):
-            if triplets[j] < triplets[minValueIndex] :
-                minValueIndex = j
-        if minValueIndex != i :
-            temp = triplets[i]
-            triplets[i] = triplets[minValueIndex]
-            triplets[minValueIndex] = temp
-    return triplets
-triplets = [("fichier3.txt", 21), ("fichier1. txt",6), ("fichier2. txt",33)] 
-
-print(selectionSort(triplets)) 
-
+    print(triplet) 
