@@ -15,35 +15,36 @@ for etudiant in etudiants:
     print(f"{etudiant[0]} ({etudiant[1]} ans)") 
 
 
-def switch(liste i j): 
+#def switch(liste i j): 
     if 0 <= i < len(liste) and 0 <= j < len(liste):
         liste[i], liste[j] = liste[j], liste[i]
         return liste
     else:
         print("Indices invalides. Veuillez fournir des indices valides dans les limites de la liste.")
         return liste
-ma_liste = [("Viy34"),("Ryan" 43), ("Tity" 31), ("Antony" 27), ("Calvin" 39), ("Lilian" 27)] 
+#ma_liste = [("Viy34"),("Ryan" 43), ("Tity" 31), ("Antony" 27), ("Calvin" 39), ("Lilian" 27)] 
 resultat = switch(ma_liste, i, j)
 print(f"Liste après l'échange des éléments aux indices {i} et {j} : {resultat}") 
 
 
-def selectionSort(age):
-    n = len(age)
-    for i in range( n - 1 ): 
-        minValueIndex = i
+def selectionSort(liste):
+    
+    t = len(liste)
+    for i in range(t):
+        min_index = i
+        for j in range(i + 1, t):
+            if liste[j][0] < liste[min_index][0]:
+                min_index = j
 
-        for j in range( i + 1, n ):
-            if age[j] < age[minValueIndex] :
-                minValueIndex = j
-        if minValueIndex != i :
-            temp = age[i]
-            age[i] = age[minValueIndex]
-            age[minValueIndex] = temp
-    return ma_liste 
-triplets = [("viny", 34), ("Ryan", 34), ("Tity",31), ("Antony", 27) ("Calvin", 39) ("lilian", 27)] 
+        # Parmuter les éléments
+        liste[i], liste[min_index] = liste[min_index], liste[i]
 
-print(selectionSort(age)) 
+    return liste
 
+# Exemple d'utilisation
+liste = [("Viny", 34), ("Ryan", 43), ("Tity", 31), ("Antony", 27), ("Calvin", 39), ("Lilian", 27)]
+ma_liste = selectionSort(liste)
+print(ma_liste) 
 
 
 def tri_a_bulles_Sort(triplets):
